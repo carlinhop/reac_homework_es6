@@ -61,7 +61,11 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	window.onload = function () {
-	  _reactDom2.default.render(_react2.default.createElement(_Main2.default, { url: 'https://itunes.apple.com/gb/rss/topsongs/limit=20/json' }), document.getElementById('app'));
+	  _reactDom2.default.render(_react2.default.createElement(
+	    _Main2.default,
+	    { url: 'https://itunes.apple.com/gb/rss/topsongs/limit=20/json', createClass: 'main' },
+	    ' '
+	  ), document.getElementById('app'));
 	};
 
 /***/ },
@@ -19829,8 +19833,8 @@
 	      return _react2.default.createElement(
 	        'div',
 	        null,
-	        _react2.default.createElement(_Left2.default, { songs: this.state.songs }),
-	        _react2.default.createElement(_Right2.default, null)
+	        _react2.default.createElement(_Left2.default, { songs: this.state.songs, createClass: 'left' }),
+	        _react2.default.createElement(_Right2.default, { createClass: 'right' })
 	      );
 	    }
 	  }]);
@@ -19862,7 +19866,7 @@
 	
 	var Right = function Right(props) {
 	  return _react2.default.createElement(
-	    'p',
+	    'div',
 	    null,
 	    'Placeholder'
 	  );
@@ -19893,9 +19897,10 @@
 	var List = function List(_ref) {
 	  var songs = _ref.songs;
 	
-	  console.log(songs);
+	
 	  var songList = songs.map(function (disc, index) {
-	    return _react2.default.createElement(_Song2.default, { title: disc.title.label, key: index });
+	
+	    return _react2.default.createElement(_Song2.default, { img: disc["im:image"][2].label, key: index });
 	  });
 	
 	  return _react2.default.createElement(
@@ -19924,14 +19929,10 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var Song = function Song(_ref) {
-	  var title = _ref.title;
+	  var img = _ref.img;
 	
 	
-	  return _react2.default.createElement(
-	    'h1',
-	    null,
-	    title
-	  );
+	  return _react2.default.createElement('img', { src: img });
 	};
 	
 	exports.default = Song;

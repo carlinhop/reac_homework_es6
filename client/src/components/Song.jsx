@@ -1,10 +1,10 @@
 import React from 'react';
 
-const Song = function({title}){
+const Song = function({img}){
 
 
 
-  return (<h1>{title}</h1>);
+  return (<img src={img}/>)
 }
 
 export default Song

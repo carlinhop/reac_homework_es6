@@ -31,8 +31,8 @@ class Main extends React.Component{
   render(){
     return (
       <div>
-        <Left songs={this.state.songs}/>
-        <Right/>
+        <Left songs={this.state.songs} createClass="left"/>
+        <Right createClass="right"/>
       </div>
     )
   }
