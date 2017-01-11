@@ -19893,9 +19893,9 @@
 	var List = function List(_ref) {
 	  var songs = _ref.songs;
 	
-	
-	  var songList = [{ title: "disc1" }].map(function (disc, index) {
-	    return _react2.default.createElement(_Song2.default, { title: disc.title, key: index });
+	  console.log(songs);
+	  var songList = songs.map(function (disc, index) {
+	    return _react2.default.createElement(_Song2.default, { title: disc.title.label, key: index });
 	  });
 	
 	  return _react2.default.createElement(
