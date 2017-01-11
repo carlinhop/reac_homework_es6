@@ -1,7 +1,10 @@
 import React from 'react';
 
-const Song = function(props){
-  return (<h1>Hola</h1>);
+const Song = function({title}){
+
+
+
+  return (<h1>{title}</h1>);
 }
 
 export default Song

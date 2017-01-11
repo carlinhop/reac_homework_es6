@@ -61,7 +61,7 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	window.onload = function () {
-	  _reactDom2.default.render(_react2.default.createElement(_Main2.default, null), document.getElementById('app'));
+	  _reactDom2.default.render(_react2.default.createElement(_Main2.default, { url: 'https://itunes.apple.com/gb/rss/topsongs/limit=20/json' }), document.getElementById('app'));
 	};
 
 /***/ },
@@ -19774,9 +19774,13 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _List = __webpack_require__(160);
+	var _Right = __webpack_require__(160);
 	
-	var _List2 = _interopRequireDefault(_List);
+	var _Right2 = _interopRequireDefault(_Right);
+	
+	var _Left = __webpack_require__(163);
+	
+	var _Left2 = _interopRequireDefault(_Left);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -19792,13 +19796,42 @@
 	  function Main(props) {
 	    _classCallCheck(this, Main);
 	
-	    return _possibleConstructorReturn(this, (Main.__proto__ || Object.getPrototypeOf(Main)).call(this, props));
+	    var _this = _possibleConstructorReturn(this, (Main.__proto__ || Object.getPrototypeOf(Main)).call(this, props));
+	
+	    _this.state = { songs: [] };
+	    return _this;
 	  }
 	
 	  _createClass(Main, [{
+	    key: 'loadSongs',
+	    value: function loadSongs(url) {
+	      var _this2 = this;
+	
+	      var request = new XMLHttpRequest();
+	      request.open('GET', url);
+	      request.onload = function () {
+	        if (request.status == 200) {
+	          var jsonString = request.responseText;
+	          var songsList = JSON.parse(jsonString);
+	          _this2.setState({ songs: songsList.feed.entry });
+	        }
+	      };
+	      request.send();
+	    }
+	  }, {
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      this.loadSongs(this.props.url);
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
-	      return _react2.default.createElement(_List2.default, null);
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(_Left2.default, { songs: this.state.songs }),
+	        _react2.default.createElement(_Right2.default, null)
+	      );
 	    }
 	  }]);
 	
@@ -19821,17 +19854,21 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _Song = __webpack_require__(161);
+	var _List = __webpack_require__(161);
 	
-	var _Song2 = _interopRequireDefault(_Song);
+	var _List2 = _interopRequireDefault(_List);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var List = function List(props) {
-	  return _react2.default.createElement(_Song2.default, null);
+	var Right = function Right(props) {
+	  return _react2.default.createElement(
+	    'p',
+	    null,
+	    'Placeholder'
+	  );
 	};
 	
-	exports.default = List;
+	exports.default = Right;
 
 /***/ },
 /* 161 */
@@ -19847,17 +19884,85 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
+	var _Song = __webpack_require__(162);
+	
+	var _Song2 = _interopRequireDefault(_Song);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var Song = function Song(props) {
+	var List = function List(_ref) {
+	  var songs = _ref.songs;
+	
+	
+	  var songList = [{ title: "disc1" }].map(function (disc, index) {
+	    return _react2.default.createElement(_Song2.default, { title: disc.title, key: index });
+	  });
+	
+	  return _react2.default.createElement(
+	    'div',
+	    null,
+	    songList
+	  );
+	};
+	
+	exports.default = List;
+
+/***/ },
+/* 162 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var Song = function Song(_ref) {
+	  var title = _ref.title;
+	
+	
 	  return _react2.default.createElement(
 	    'h1',
 	    null,
-	    'Hola'
+	    title
 	  );
 	};
 	
 	exports.default = Song;
+
+/***/ },
+/* 163 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _List = __webpack_require__(161);
+	
+	var _List2 = _interopRequireDefault(_List);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var Left = function Left(_ref) {
+	  var songs = _ref.songs;
+	
+	  return _react2.default.createElement(_List2.default, { songs: songs });
+	};
+	
+	exports.default = Left;
 
 /***/ }
 /******/ ]);

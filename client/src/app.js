@@ -4,7 +4,7 @@ import Main from './containers/Main'
 
 window.onload = function(){
   ReactDOM.render(
-    <Main/>,
+    <Main url='https://itunes.apple.com/gb/rss/topsongs/limit=20/json'/>,
     document.getElementById('app')
   );
 }
