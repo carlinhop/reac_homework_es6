@@ -63,7 +63,7 @@
 	window.onload = function () {
 	  _reactDom2.default.render(_react2.default.createElement(
 	    _Main2.default,
-	    { url: 'https://itunes.apple.com/gb/rss/topsongs/limit=20/json', createClass: 'main' },
+	    { url: 'https://itunes.apple.com/gb/rss/topsongs/limit=20/json' },
 	    ' '
 	  ), document.getElementById('app'));
 	};
@@ -19832,9 +19832,9 @@
 	    value: function render() {
 	      return _react2.default.createElement(
 	        'div',
-	        null,
-	        _react2.default.createElement(_Left2.default, { songs: this.state.songs, createClass: 'left' }),
-	        _react2.default.createElement(_Right2.default, { createClass: 'right' })
+	        { className: 'main' },
+	        _react2.default.createElement(_Left2.default, { songs: this.state.songs }),
+	        _react2.default.createElement(_Right2.default, null)
 	      );
 	    }
 	  }]);
@@ -19867,7 +19867,7 @@
 	var Right = function Right(props) {
 	  return _react2.default.createElement(
 	    'div',
-	    null,
+	    { className: 'right' },
 	    'Placeholder'
 	  );
 	};
@@ -19905,7 +19905,7 @@
 	
 	  return _react2.default.createElement(
 	    'div',
-	    null,
+	    { className: 'left' },
 	    songList
 	  );
 	};

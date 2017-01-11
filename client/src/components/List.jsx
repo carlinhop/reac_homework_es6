@@ -8,7 +8,7 @@ const List = function({songs}){
     return (<Song img={disc["im:image"][2].label} key={index}/>)
   });
 
-  return (<div>{songList}</div>)
+  return (<div className="left">{songList}</div>)
 }
 
 export default List
