@@ -1,13 +1,15 @@
 import React from 'react';
 
-const Song = function({img}){
+const Song = function(props){
 
   
 
-  return (<img src={img} draggable="true" onDragStart={function(e){
-    
-    e.dataTransfer.setData("text/plain",e.currentTarget.src);
-  }}/>)
+  return (<img src={props.img} draggable="true" onDragStart={function(e){
+      
+    e.dataTransfer.setData("text/plain",e.currentTarget.id);
+
+
+  }} id={(props.id)}/>)
 }
 
 export default Song

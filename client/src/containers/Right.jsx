@@ -11,10 +11,10 @@ const Right = function(props){
     e.preventDefault();
     
     let imageSrc = e.dataTransfer.getData("text");
+    console.log(imageSrc);
+    let img = document.getElementById(imageSrc);
     let right = document.querySelector(".right");
     
-    let img = new Image();
-    img.src = imageSrc;
     
     right.appendChild(img);
 

@@ -19876,10 +19876,9 @@
 	        e.preventDefault();
 	
 	        var imageSrc = e.dataTransfer.getData("text");
+	        console.log(imageSrc);
+	        var img = document.getElementById(imageSrc);
 	        var right = document.querySelector(".right");
-	
-	        var img = new Image();
-	        img.src = imageSrc;
 	
 	        right.appendChild(img);
 	      } },
@@ -19940,7 +19939,7 @@
 	
 	  var songList = songs.map(function (disc, index) {
 	
-	    return _react2.default.createElement(_Song2.default, { img: disc["im:image"][2].label, key: index });
+	    return _react2.default.createElement(_Song2.default, { img: disc["im:image"][2].label, key: index, id: index });
 	  });
 	
 	  return _react2.default.createElement(
@@ -19968,14 +19967,12 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var Song = function Song(_ref) {
-	  var img = _ref.img;
+	var Song = function Song(props) {
 	
+	  return _react2.default.createElement("img", { src: props.img, draggable: "true", onDragStart: function onDragStart(e) {
 	
-	  return _react2.default.createElement("img", { src: img, draggable: "true", onDragStart: function onDragStart(e) {
-	
-	      e.dataTransfer.setData("text/plain", e.currentTarget.src);
-	    } });
+	      e.dataTransfer.setData("text/plain", e.currentTarget.id);
+	    }, id: props.id });
 	};
 	
 	exports.default = Song;
