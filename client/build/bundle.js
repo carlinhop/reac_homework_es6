@@ -19867,12 +19867,52 @@
 	var Right = function Right(props) {
 	  return _react2.default.createElement(
 	    'div',
-	    { className: 'right' },
+	    { className: 'right', onDragEnter: function onDragEnter(e) {
+	        e.preventDefault();
+	        console.dir(e);
+	      }, onDragOver: function onDragOver(e) {
+	        e.preventDefault();
+	      }, onDrop: function onDrop(e) {
+	        e.preventDefault();
+	
+	        var imageSrc = e.dataTransfer.getData("text");
+	        var right = document.querySelector(".right");
+	
+	        var img = new Image();
+	        img.src = imageSrc;
+	
+	        right.appendChild(img);
+	      } },
 	    'Placeholder'
 	  );
 	};
 	
 	exports.default = Right;
+	
+	// left.addEventListener("dragstart", 
+	// function(event){
+	// //event.preventDefault();
+	// event.dataTransfer.setData("text/plain",event.currentTarget.innerText);
+	// //console.dir(event);
+	// }, false);
+	
+	// right.addEventListener("dragenter",
+	// function(event){
+	// event.preventDefault();
+	// console.dir(event);;
+	// }, false);
+	
+	// right.addEventListener("dragover",
+	// function(event){
+	// event.preventDefault();
+	// //console.log(event);
+	// }, false);
+	
+	// right.addEventListener("drop",
+	// function(event){
+	// event.preventDefault();
+	// right.innerText = event.dataTransfer.getData("text/plain");
+	// }, false);
 
 /***/ },
 /* 161 */
@@ -19916,7 +19956,7 @@
 /* 162 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -19932,7 +19972,10 @@
 	  var img = _ref.img;
 	
 	
-	  return _react2.default.createElement('img', { src: img });
+	  return _react2.default.createElement("img", { src: img, draggable: "true", onDragStart: function onDragStart(e) {
+	
+	      e.dataTransfer.setData("text/plain", e.currentTarget.src);
+	    } });
 	};
 	
 	exports.default = Song;
